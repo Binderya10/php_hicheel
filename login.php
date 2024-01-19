@@ -20,7 +20,7 @@ echo 'PHP код байна';
         </div>
         <div class="col-md-4 col-8">
             <?php
-            if ($_GET['error'] == 1) {
+            if (isset($_GET['error']) && $_GET['error'] == 1) {
             ?>
                 <div class="alert alert-warning" role="alert">
                     Нэвтрэх нэр эсвэл нууц үг буруу
@@ -28,6 +28,16 @@ echo 'PHP код байна';
             <?php
             }
             ?>
+
+            <?php
+            if (isset($_GET['error']) && $_GET['error'] == 1) {
+                echo ' <div class="alert alert-warning" role="alert">
+                    Нэвтрэх нэр эсвэл нууц үг буруу
+                </div>';
+            }
+            ?>
+
+
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Нэтрэх нэр</label>
                 <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="имэйл оруулна уу">

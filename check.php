@@ -14,14 +14,18 @@ $stmt->bind_param('ss', $_POST['email'], $_POST['pass']);
 $stmt->execute();
 $result = $stmt->get_result();
 
-while($row = $result->fetch_array(MYSQLI_NUM)){
+if($row = $result->fetch_array(MYSQLI_NUM)){
     // Амжилттай
     //    print_r($row);
+    session_start();
+    $_SESSION['email']= $_POST['email'];
     header("location: home.php");
+}else{
+    // Нэвтрэх нэр эсвэл нууц үг буруу
+    echo 'Нэвтрэх нэр эсвэл нууц үг буруу';
+    header("location: login.php?error=1");
 }
-// Нэвтрэх нэр эсвэл нууц үг буруу
-echo 'Нэвтрэх нэр эсвэл нууц үг буруу';
-header("location: login.php?error=1");
+
 ?>
 
 
