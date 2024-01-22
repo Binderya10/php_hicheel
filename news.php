@@ -10,6 +10,8 @@ if(isset($_POST['submit'])){
     $contentVar = $_POST['content'];
     $fileVar = $_FILES['imagefile']['name'];
 
+    $fileName = fileNameGenegerate($fileVar); // upload/nom.jpg  upload/nom-324523dsfsf.jpg
+
     echo $titleVar;
     echo "<br>";
     echo $contentVar;
@@ -17,6 +19,48 @@ if(isset($_POST['submit'])){
     echo  $fileVar;
     echo "<br>";
 
+    if(file_exists($fileName)){
+        echo "Файлын нэр давхардаж байна";
+        exit();
+    }
+
+    echo fileNameGenegerate($fileVar);
+    echo basename($_FILES['imagefile']['name'])."<br>";
+    echo pathinfo($fileVar, PATHINFO_EXTENSION)."<br>";
+    echo "file iin hemjee:". $_FILES['imagefile']['size'] . "<br>";
+    if($_FILES['imagefile']['size'] > 500000){
+        echo "Файлын хэмжээ том байна.";
+        exit();
+    }
+
+    if(move_uploaded_file($_FILES['imagefile']['tmp_name'], "upload/".$fileName)){
+        echo "OK";
+    }else{
+        echo "Файл хуулахад алдаа гарлаа";
+    }
+
+    $conn = mysqli_connect('localhost', 'root', '', 'profile');
+
+    $time = date('Y-m-d H:i:s', time());
+
+    $stmt = $conn->prepare("insert into news (title, content,	img_url,	cat_id,	created_date) values 
+        (? , ?, ?, 1, now())");
+    $stmt->bind_param('sss',$titleVar, $contentVar, $fileName);
+
+    $stmt->execute();
+
+}
+
+function fileNameGenegerate($file){
+    // ном.doc
+    $extention = pathinfo($file, PATHINFO_EXTENSION); // doc
+
+    $onlyName = str_replace($extention, '', $file); // ном.
+    $onlyNameShuu = str_replace('.', '', $onlyName); // ном
+
+    $ret = $onlyNameShuu. "-". uniqid(). ".".$extention; // ном-!23asasfsdf.doc
+
+    return $ret;
 }
 
 ?>
