@@ -34,6 +34,17 @@ echo 'PHP код байна';
                 echo ' <div class="alert alert-warning" role="alert">
                     Нэвтрэх нэр эсвэл нууц үг буруу
                 </div>';
+            } elseif (isset($_GET['error']) && $_GET['error'] == 2){
+                echo ' <div class="alert alert-warning" role="alert">
+                    session дууссан байна. Дахин нэвтэрч орно уу.
+                </div>';
+            } elseif (isset($_GET['error']) && $_GET['error'] == 3){
+                echo ' <div class="alert alert-warning" role="alert">
+                    Системээс гарлаа.
+                </div>';
+            } else {
+                // эсрэг нөхцөл
+
             }
             ?>
 

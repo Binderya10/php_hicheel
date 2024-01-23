@@ -1,11 +1,18 @@
 <?php
 session_start();
+
+//if(isset($_SESSION['email']) == false){ // true false
+if(!isset($_SESSION['email'])){ // true false
+    // false
+    header("location: login.php?error=2");
+}
 ?>
 <html>
 <head>
     <title>Admin веб</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="script/jquery-3.7.1.min.js"></script>
+    <script src="script/script.js"></script>
 </head>
 <body>
 
@@ -25,7 +32,7 @@ session_start();
                             Үндсэн цэс
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="news.php">Мэдээ</a></li>
+                            <li><a class="dropdown-item" href="newslist.php">Мэдээ</a></li>
                             <li><a class="dropdown-item" href="#">Ангилал</a></li>
                         </ul>
                     </div>

@@ -1,5 +1,6 @@
 <?php
 include ("header.php");
+include ("database.php");
 //if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //    // …
 //}
@@ -39,7 +40,6 @@ if(isset($_POST['submit'])){
         echo "Файл хуулахад алдаа гарлаа";
     }
 
-    $conn = mysqli_connect('localhost', 'root', '', 'profile');
 
     $time = date('Y-m-d H:i:s', time());
 
