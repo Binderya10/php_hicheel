@@ -11,3 +11,15 @@ function deleteNews(title, id){
         // Эсрэг нөхцөл
     }
 }
+
+function deleteCategory(catname, id){
+    if(confirm('Та ' + catname + ' гэсэн ангилал устгах уу?')){
+           // Устгах үйлдэл
+        $.get("catdelete.php?id=" + id, function (){
+           alert('Амжилттай устлаа');
+        }).fail(function (){
+            alert('Алдаа гарлаа');
+        });
+        location.reload();
+    }
+}

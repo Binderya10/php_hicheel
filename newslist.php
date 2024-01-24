@@ -45,5 +45,5 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)){
 
 
 <?php
-include ("foother.php");
+include("footer.php");
 ?>

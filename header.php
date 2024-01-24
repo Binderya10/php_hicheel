@@ -17,6 +17,8 @@ if(!isset($_SESSION['email'])){ // true false
 <body>
 
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -33,7 +35,7 @@ if(!isset($_SESSION['email'])){ // true false
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="newslist.php">Мэдээ</a></li>
-                            <li><a class="dropdown-item" href="#">Ангилал</a></li>
+                            <li><a class="dropdown-item" href="categorylist.php">Ангилал</a></li>
                         </ul>
                     </div>
                 </div>

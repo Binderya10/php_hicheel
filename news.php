@@ -10,6 +10,7 @@ if(isset($_POST['submit'])){
     $titleVar = $_POST['title'];
     $contentVar = $_POST['content'];
     $fileVar = $_FILES['imagefile']['name'];
+    $catid = $_POST['cat'];
 
     $fileName = fileNameGenegerate($fileVar); // upload/nom.jpg  upload/nom-324523dsfsf.jpg
 
@@ -44,8 +45,8 @@ if(isset($_POST['submit'])){
     $time = date('Y-m-d H:i:s', time());
 
     $stmt = $conn->prepare("insert into news (title, content,	img_url,	cat_id,	created_date) values 
-        (? , ?, ?, 1, now())");
-    $stmt->bind_param('sss',$titleVar, $contentVar, $fileName);
+        (? , ?, ?, ?, now())");
+    $stmt->bind_param('ssss',$titleVar, $contentVar, $fileName, $catid);
 
     $stmt->execute();
 
@@ -63,12 +64,34 @@ function fileNameGenegerate($file){
     return $ret;
 }
 
+$stmt = $conn->prepare("select * from category");
+$stmt->execute();
+$result = $stmt->get_result();
+$category = array();
+while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+    array_push($category, $row);
+}
+//print_r($category);
 ?>
 
 <form action="news.php" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Гарчиг</label>
         <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <div class="form-floating">
+            <select name="cat" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <option value="">Сонгоно уу ...</option>
+                <?php
+                foreach ($category as $cat){
+                    echo '<option value="'.$cat['id'].'">'.$cat['cat_name'].'</option>';
+                }
+                ?>
+
+            </select>
+            <label for="floatingSelect">Ангилал</label>
+        </div>
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Агуулга</label>
@@ -88,5 +111,5 @@ function fileNameGenegerate($file){
     } );
 </script>
 <?php
-include ("foother.php");
+include("footer.php");
 ?>
