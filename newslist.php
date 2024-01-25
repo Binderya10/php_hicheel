@@ -32,10 +32,12 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)){
     ?>
     <tr>
       <th scope="row"><?php echo $row['id'];?></th>
-      <td><img src="upload/<?php echo $row['img_url'];?>" width="100px"></td>
-      <td><a href="newsedit.php"> <?php echo $row['title'];?> </a></td>
-      <td><?php echo $row['created_date']; ?></td>
-      <td><a href="#" class="btn btn-danger" onclick="deleteNews('<?php echo $row['title'];?>', <?php echo $row['id'];?>);">Устгах</a> <a href="newsedit.php" class="btn btn-success">Засах</a></td>
+        <td><a href="newsedit.php?id=<?php echo $row['id']; ?>"><img src="upload/<?php echo $row['img_url'];?>" width="100px"></a></td>
+        <td><a href="newsedit.php?id=<?php echo $row['id']; ?>"> <?php echo $row['title'];?> </a></td>
+        <td><?php echo $row['created_date']; ?></td>
+        <td><a href="#" class="btn btn-danger"
+               onclick="deleteNews('<?php echo $row['title'];?>', <?php echo $row['id'];?>);">Устгах</a>
+            <a href="newsedit.php?id=<?php echo $row['id'];?>" class="btn btn-success">Засах</a></td>
     </tr>
 <?php
 }

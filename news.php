@@ -1,6 +1,7 @@
 <?php
 include ("header.php");
 include ("database.php");
+include ("functions/functions.php");
 //if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //    // …
 //}
@@ -50,18 +51,6 @@ if(isset($_POST['submit'])){
 
     $stmt->execute();
 
-}
-
-function fileNameGenegerate($file){
-    // ном.doc
-    $extention = pathinfo($file, PATHINFO_EXTENSION); // doc
-
-    $onlyName = str_replace($extention, '', $file); // ном.
-    $onlyNameShuu = str_replace('.', '', $onlyName); // ном
-
-    $ret = $onlyNameShuu. "-". uniqid(). ".".$extention; // ном-!23asasfsdf.doc
-
-    return $ret;
 }
 
 $stmt = $conn->prepare("select * from category");

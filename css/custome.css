@@ -1,0 +1,14 @@
+.myDiv {
+    padding: 20px;
+    position:relative;
+    height: 300px;
+
+    justify-content: center;
+}
+.myImage {
+    position:absolute;
+    left:0;
+    top:0;
+    width: 100%;
+
+}
