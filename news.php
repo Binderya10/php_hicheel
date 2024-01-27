@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
     echo basename($_FILES['imagefile']['name'])."<br>";
     echo pathinfo($fileVar, PATHINFO_EXTENSION)."<br>";
     echo "file iin hemjee:". $_FILES['imagefile']['size'] . "<br>";
-    if($_FILES['imagefile']['size'] > 500000){
+    if($_FILES['imagefile']['size'] > 50000000){
         echo "Файлын хэмжээ том байна.";
         exit();
     }

@@ -21,5 +21,5 @@ function fileNameGenegerate($file){
 }
 
 function truncate($str, $lenght){
-    return strtok(wordwrap($str, $lenght, '...'), "\n");
+    return strtok(wordwrap($str, $lenght, ' '), "\n");
 }

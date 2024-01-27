@@ -24,7 +24,9 @@ if(!isset($_SESSION['email'])){ // true false
         <div class="col-md-3">
             <div class="row">
                 <div class="col">
-                    <img src="image/mongol.jpg" width="200px">
+                    <a href="index.php">
+                        <img src="image/mongol.jpg" width="200px">
+                    </a>
                 </div>
             </div>
             <div class="row">
